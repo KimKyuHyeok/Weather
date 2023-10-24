@@ -1,5 +1,6 @@
 package sideproject.weather.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,6 +16,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 public class Diary {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,4 +25,11 @@ public class Diary {
     private double temperature;
     private String text;
     private LocalDate date;
+
+    public void setDateWeather(DateWeather dateWeather){
+        this.date = dateWeather.getDate();
+        this.weather = dateWeather.getWeather();
+        this.icon = dateWeather.getIcon();
+        this.temperature = dateWeather.getTemperature();
+    }
 }
