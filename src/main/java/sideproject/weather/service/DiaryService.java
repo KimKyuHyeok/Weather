@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import sideproject.weather.WeatherApplication;
 import sideproject.weather.domain.DateWeather;
 import sideproject.weather.domain.Diary;
+import sideproject.weather.error.InvalidDate;
 import sideproject.weather.repository.DateWeatherRepository;
 import sideproject.weather.repository.DiaryRepository;
 
@@ -57,6 +58,9 @@ public class DiaryService {
     }
 
     public List<Diary> readDiary(LocalDate date) {
+        if(date.isAfter(LocalDate.ofYearDay(3050, 1))){
+            throw new InvalidDate();
+        }
         return diaryRepository.findAllByDate(date);
     }
 
